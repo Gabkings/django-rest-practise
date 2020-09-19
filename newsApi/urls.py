@@ -20,10 +20,14 @@ from news.api.views2 import (NewsClass,
                              NewsDetailsModify,
                              JournalistVC,
                              JournalistDetailsModify)
+from jobs.views import JobVC, JobDetailsModify
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/v1/list", NewsClass.as_view(), name="all-news"),
+    path("api/v1/jobs", JobVC.as_view(), name="all-jobs"),
+    path("api/v1/jobs/<int:pk>",
+         JobDetailsModify.as_view(), name="job-details"),
     path("api/v1/list/<int:pk>/",
          NewsDetailsModify.as_view(), name="news-details"),
     path("api/v1/list/editor/", JournalistVC.as_view(), name="editors"),
