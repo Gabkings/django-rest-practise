@@ -16,10 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 # from news.api.views import news_list_create, list_update_delete
-from news.api.views2 import NewsClass, NewsDetailsModify
+from news.api.views2 import (NewsClass,
+                             NewsDetailsModify,
+                             JournalistVC,
+                             JournalistDetailsModify)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/v1/list", NewsClass.as_view(), name="all-news"),
-    path("api/v1/list/<int:pk>/", NewsDetailsModify.as_view(), name="news-details")
+    path("api/v1/list/<int:pk>/",
+         NewsDetailsModify.as_view(), name="news-details"),
+    path("api/v1/list/editor/", JournalistVC.as_view(), name="editors"),
+    path("api/v1/list/<int:pk>/",
+         JournalistDetailsModify.as_view(), name="editor-details")
 ]
